@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://www.evolvecyber.com/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/static/dashboard/top.css" type="text/css">
+<link rel="stylesheet" href="/static/dashboard/sshcopy.css" type="text/css">
+ <link rel="stylesheet" href="/static/animation/animation.css">
+ <link rel="stylesheet" href="/static/ssh-copy/animation.css">
+<style>
+.main {
+    font-family: "Lato", sans-serif;
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+</style>
+<div class="topnav">
+  <a class="active" href="{{ url_for('logout') }}">logout</a>
+  <a href="#about">About</a>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('check') }}">Check</a>
+  <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+
+    <div class="search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"/i>Search</button>
+      </form>
+    </div>
+  </div>
+</head>
+
+<body>
+  <center>
+    <div class="ssh-copy">
+      <h1>Please copy this ssh-id and add each Machine</h1>
+      <input type="text" value="echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5AvAuNdI1cLpL+0voRkbVziels0EyX1uZDtT5jdtAEQ64khJjQALTr9AFUso0YkJg6ASBI0uxMD8fWLmoQMsh14hvOl3dVJ3f2+oyoYcRkTY3eEUxnWIGViugoFQgHlJzkSvlGzGiPZ+uczmxW6Eqnn3fSZey8dT6MFBo/gBOf9HqNXb8sZegwXdLS9XlfNvo4xjIzFzqe6wTvCcQMENfA4L5bgWQVy2kcyXKTNBgBLGxetC5g64O3z4KTaVFlKD0m8eOJZ+YLlnK4koVi4YGP4EDBIBdhdSwCULgACIbtCTDUB7hj9MpblCDPfNMKnP0AO2GeKZ0xOfJjXiW2wR1 root@localhost.localdomain' >> ~/.ssh/authorized_keys"id="myInput">
+      <button onclick="myFunction()">Copy ID</button>
+    </div>
+  </center>
+  <div class="main">
+    <div class=" animated bounceInLeft firststep">
+      <h2>Follow this steps please (manual)</h2>
+      <p>1. Login to each Machine as root.</p>
+      <p>2. Copy ssh-id from WEBside.</p>
+      <p>3. Run as root inside your DC Machine.</p>
+    </div>
+    <div class="animated bounceInLeft secondstep">
+    <h2>Follow this steps please (auto)</h2>
+    <p>1. Login to Ansible Server .</p>
+    <p>2. Create a file and put inside the file copied line from Webside.</p>
+    <p>3. Run the following command.<code> #ansible all -m script -f file</code></p>
+    </div>
+  </div>
+</body>
+</html>

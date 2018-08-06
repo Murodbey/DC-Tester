@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://www.evolvecyber.com/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/static/dashboard/top.css" type="text/css">
+<link rel="stylesheet" href="/static/contact/contact.css">
+ <link rel="stylesheet" href="/static/animation/animation.css">
+
+<div class="topnav">
+  <a class="active" href="{{ url_for('logout') }}">logout</a>
+  <a href="#about">About</a>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('check') }}">Check</a>
+  <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"/i>Search</button>
+    </form>
+  </div>
+</div>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<body>
+
+<h3>Contact Us</h3>
+
+<div class="container animated bounceIn">
+  <form action="/action_page.php">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Server</label>
+    <select id="country" name="country">
+      <option value="repository">Repository</option>
+      <option value="dns-server">DNS-Master</option>
+      <option value="mysql">MYSQL</option>
+      <option value="mail-server">Mail-Sever</option>
+      <option value="nagios">Nagios</option>
+      <option value="web-server">Web Server</option>
+      <option value="ansible">Ansible</option>
+      <option value="nfs-server">NFS-server</option>
+    </select>
+
+    <label for="question">Question</label>
+    <textarea id="subject" name="subject" placeholder="Tel us what is wrong" style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

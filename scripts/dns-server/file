@@ -1,0 +1,3 @@
+#!/bin/bash
+ipaddr="159.89.47.72"
+sed "/$ipaddr/d" -i /etc/resolv.conf

@@ -1,0 +1,5 @@
+[111]
+name=check server
+baseurl=ftp://IPADDRfolder
+gpgcheck=0
+enabled=1

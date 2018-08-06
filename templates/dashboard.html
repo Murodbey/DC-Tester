@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="https://www.evolvecyber.com/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/static/dashboard/top.css" type="text/css">
+<link rel="stylesheet" href="/static/dashboard/scrol-servers.css" type="text/css">
+<link rel="stylesheet" href="/static/dashboard/table.css" type="text/css">
+<link rel="stylesheet" href="/static/dashboard/footler.css" type="text/css">
+ <link rel="stylesheet" href="/static/animation/animation.css">
+
+<div class="topnav">
+  <a class="active" href="{{ url_for('logout') }}">logout</a>
+  <a href="#about">About</a>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('check') }}">Check</a>
+  <a href="{{ url_for('dashboard') }}">Dashboard</a>
+  <a class="disable" href="{{ url_for('admin.index') }}">Admin</a>
+
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"/i>Search</button>
+    </form>
+  </div>
+</div>
+</head>
+<center>
+<div class="ssh-copy">
+  <h1 class="animated bounce ">Please follow this steps First</h1>
+  <a href="{{ url_for('sshcopy') }}">Click here more information</a>
+  <br>
+  <input type="text" value="echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+jtFCeTfSsvVR7YF8pU31dY4pqXxC1zavJu35m9X6+rbL84Nxrzh0mHGw5mtkR1/ecf8V7PmsBBfAjwMPXPHc0XWivHwIY2HnU+RE9hyh6GQn5pOjFH7SsPoRYgZ9RQMJkGDSkuiB6z4Lq7z/TvDxgwmft4kAajvQjzfv6Frhq2xVoyfqCT3ZRSAFTqn0EC4/nsfdqqDx3FKyG1nBimRBrxkoGtUkQ4Mc8AJoTM6ZI9+jt3ymm2S390R8ZsojPTnvMAVvZSywNqJQz9jRxujyouVoztVa52686cU51+kGIRj64xLAi0Q3XPDXw+wCnEpyo9Yzi88G9oe0H0mixKSb root@Flask-DC-tester' >> ~/.ssh/authorized_keys"id="myInput">
+  <button onclick="myFunction()">Copy ID</button>
+</div>
+  </center>
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+  <div class="scrolling-wrapper-flexbox">
+      <div class="card">
+        <img src="{{url_for('static', filename='images/repository.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Repository</h4>
+        <form method="POST">
+          <input type="text" name="repoip" placeholder="Please enter your IP">
+          <input type="submit">
+        </form>
+        {{ result }}
+      </div>
+
+      <div class="card">
+        <img src="{{url_for('static', filename='images/dns-server.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>DNS Master</h4>
+        <form method="POST">
+          <input type="text" name="dnsname" placeholder="Enter enter DNS-Name">
+          <input type="text" name="dnsip" placeholder="Please enter your IP">
+          <input type="submit">
+        </form>
+      </div>
+
+
+      <div class="card">
+        <img src="{{url_for('static', filename='images/mysql.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>MYSQL</h4>
+        <form method="POST">
+          <input type="text" name="ipmysql" placeholder="Please enter your IP">
+          <input type="submit">
+        </form>
+      </div>
+
+
+      <div class="card">
+        <img src="{{url_for('static', filename='images/mail-server.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Mail Server</h4>
+        <form method="POST">
+          <input type="text" name="mailip" placeholder="Please enter your IP">
+          <input type="submit">
+        </form>
+       </div>
+
+       <div class="card">
+         <img src="{{url_for('static', filename='images/nagios.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+         <h4>Nagios</h4>
+         <form method="POST">
+           <input type="text" name="nagiosip" placeholder="Please enter your IP">
+           <input type="submit">
+         </form>
+        </div>
+
+       <div class="card">
+        <img src="{{url_for('static', filename='images/webserver.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+        <h4>Web Server</h4>
+        <form method="POST">
+          <input type="text" name="webip" placeholder="Please enter your IP">
+          <input type="submit">
+        </form>
+       </div>
+
+      <div class="card">
+       <img src="{{url_for('static', filename='images/ansible.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+       <h4>Ansible</h4>
+       <form method="POST">
+         <input type="text" name="ansible" placeholder="Please enter your IP">
+         <input type="submit">
+       </form>
+      </div>
+
+      <div class="card">
+       <img src="{{url_for('static', filename='images/nfs-server.png')}}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+       <h4>NFS Server</h4>
+       <form method="POST">
+         <input type="text" name="ipnfs" placeholder="Please enter your IP">
+         <input type="submit">
+       </form>
+      </div>
+  </div>
+<h2 class="sub-header">Your Server's results </h2>
+
+<body>
+
+
+<table>
+<tr>
+  <th>Name Server</th>
+{% for user in servers %}
+  <th>{{ user.name }}</th>
+{% endfor %}
+</tr>
+
+
+<tr>
+  <th>Status</th>
+{% for user in servers %}
+  {% if user.status == "NONE" %}
+    <th class="animated jello" style="color: red;">{{ user.status }}</th>
+  {% elif user.status == "DONE" %}
+    <th style="color: green;">{{ user.status }}</th>
+  {%endif%}
+{% endfor %}
+</tr>
+
+<tr>
+  <th>IP Address</th>
+{% for user in servers %}
+  <th>{{ user.ipaddr }}</th>
+{% endfor %}
+</tr>
+
+
+</table>
+
+</body>
+
+<footer class="footer">
+  <p>&copy; Evolve Cyber 2018</p>
+</footer>
+</html>

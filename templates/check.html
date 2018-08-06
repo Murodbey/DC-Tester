@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="https://www.evolvecyber.com/assets/images/favicon.ico" />
+<link rel="stylesheet" href="/static/dashboard/top.css" type="text/css">
+<link rel="stylesheet" href="/static/check/load.css" type="text/css">
+
+<div class="topnav">
+  <a class="active" href="{{ url_for('logout') }}">logout</a>
+  <a href="#about">About</a>
+  <a href="{{ url_for('contact') }}">Contact</a>
+  <a href="{{ url_for('check') }}">Check</a>
+  <a href="{{ url_for('dashboard') }}">Dashboard</a>
+
+  <div class="search-container">
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"/i>Search</button>
+    </form>
+  </div>
+</div>
+</head>
+
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
+  <h2>Information about the Server</h2>
+  <h4> Name : {{ name }}  </h4>
+  <h4> IP address: {{ ipaddr }} </h4>
+  <h2> Results </h2>
+  {% if result == "DOWN" %}
+      <h2 style="color: red;">Your server is down</h2>
+  {% elif result == "ERROR" %}
+      <h3 style="color: red;">SSH ERROR</h3>
+      <a href="{{ url_for('sshcopy') }}">Please follow this steps</a>
+  {% elif result == "DONE" %}
+      <h3 style="color: green;">Your Server is DONE</h3>
+  {% endif %}
+</div>
+
+
+
+
+<script>
+var myVar;
+function myFunction() {
+    myVar = setTimeout(showPage, 3);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+</body>
+</html>
