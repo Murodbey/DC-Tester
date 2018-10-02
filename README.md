@@ -25,7 +25,7 @@ docker-compose scale dctester=10
 ```
 ![](https://github.com/farkhodsadykov/DC-Tester/blob/master/pictures/Screen%20Shot%202018-10-01%20at%208.29.46%20PM.png)
 
-[EvolveCyber](http://localhost/)
+[localhost](http://localhost/)
 
 ![](https://github.com/farkhodsadykov/DC-Tester/blob/master/pictures/Screen%20Shot%202018-10-01%20at%208.32.50%20PM.png)
 
