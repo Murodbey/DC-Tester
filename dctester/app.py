@@ -13,7 +13,6 @@ import os
 
 app = Flask(__name__)
 
-
 app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///DataBase/database.db'
 app.config['RECAPTCHA_PUBLIC_KEY'] = '6LeBCGAUAAAAAHbgwWpZJSPsTZg4NB6xG50EfJUA'
@@ -53,7 +52,6 @@ class myModelView(ModelView):
     def inaccessible_callback(self, name, **kwargs):
         return "<h2> Sorry you dont have permission for this page <h2>"
 
-
 class MyAdminIndex(AdminIndexView):
     def is_accessible(self):
         if current_user.role == "Admin":
@@ -62,9 +60,6 @@ class MyAdminIndex(AdminIndexView):
             return False
     def inaccessible_callback(self, name, **kwargs):
         return "<h2> Sorry you dont have permission for this page<h2>"
-
-
-
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -87,7 +82,6 @@ class RegisterForm(FlaskForm):
 class servers(FlaskForm):
     ipaddr = StringField('ipaddr', validators=[InputRequired(), Length(min=7, max=24)])
 
-
 @app.route('/raiting', methods=['GET', 'POST'])
 @login_required
 def raiting():
@@ -103,7 +97,6 @@ def sshcopy():
 def dashboard():
     fullName = current_user.firstname + " " + current_user.lastname
     servers = Servers.query.filter_by(student=fullName)
-
 
     if 'repoip' in request.form:
         ipaddr = request.form['repoip']
@@ -123,7 +116,6 @@ def dashboard():
             server = Servers.query.filter_by(name="Repository").first()
             server.status = "NONE"
             db.session.commit()
-
         return render_template('check.html', result=result, ipaddr=ipaddr, name=name)
 
     elif 'dnsip' in request.form:
@@ -267,4 +259,4 @@ admin.add_view(myModelView(User, db.session))
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True )
+    app.run(host='0.0.0.0', port=80, debug=True )
