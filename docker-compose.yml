@@ -1,0 +1,11 @@
+---
+version: '2'
+
+services:
+    dctester:
+        build: dctester
+
+    proxy:
+        build: proxy
+        ports:
+         - "80:80"
